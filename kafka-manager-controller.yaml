@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kafka-manager
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    app: kafka-manager
+  template:
+    metadata:
+      name: kafka-manager
+      labels:
+        app: kafka-manager
+    spec:
+      containers:
+      - name: kafka-manager
+        image: docker.io/paulbrown/kafka-manager:latest
+        ports:
+        - containerPort: 9000

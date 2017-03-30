@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: http-proxy
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    app: http-proxy
+  template:
+    metadata:
+      name: http-proxy
+      labels:
+        app: http-proxy
+    spec:
+      containers:
+      - name: http-proxy
+        image: docker.io/confluentinc/cp-kafka-rest
+        ports:
+        - containerPort: 8082
+        env:
+        - name: KAFKA_REST_SCHEMA_REGISTRY_URL
+          value: http://schema-registry:8081
+        - name: KAFKA_REST_ZOOKEEPER_CONNECT
+          value: zookeeper:2181
+        - name: KAFKA_REST_HOST_NAME
+          value: http-proxy
