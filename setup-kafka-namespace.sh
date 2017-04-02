@@ -17,3 +17,6 @@ $KUBECTL create -f schema-registry-controller.yaml
 $KUBECTL create -f http-proxy-service.yaml
 $KUBECTL create -f http-proxy-controller.yaml
 $KUBECTL create -f kafka-manager-deployment.yaml
+$KUBECTL create -f kafka-manager-service.yaml
+$KUBECTL create -f schema-registry-ui-deployment.yaml
+$KUBECTL create -f schema-registry-ui-service.yaml

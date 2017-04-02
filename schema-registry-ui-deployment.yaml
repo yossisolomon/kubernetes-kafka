@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: schema-registry-ui
+  namespace: kafka
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: schema-registry-ui
+      labels:
+        app: schema-registry-ui
+    spec:
+      containers:
+      - name: schema-registry-ui
+        image: docker.io/landoop/schema-registry-ui
+        env:
+        - name: SCHEMAREGISTRY_URL
+          value: http://77.138.42.10:9090/api/v1/proxy/namespaces/kafka/services/schema-registry:client
