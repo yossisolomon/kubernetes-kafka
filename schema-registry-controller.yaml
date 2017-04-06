@@ -15,6 +15,11 @@ spec:
     spec:
       containers:
       - name: schema-registry
-        image: docker.io/paulbrown/schema-registry:latest
+        image: docker.io/confluentinc/cp-schema-registry:latest
+        env:
+        - name: SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL
+          value: zookeeper:2181
+        - name: SCHEMA_REGISTRY_HOST_NAME
+          value: schema-registry
         ports:
         - containerPort: 8081
