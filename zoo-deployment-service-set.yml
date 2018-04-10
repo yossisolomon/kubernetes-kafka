@@ -1,0 +1,52 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: zooSET_ID
+spec:
+  serviceName: "zooSET_ID"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zooSET_ID
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: zookeeper
+          image: bitnami/zookeeper:3.4.10
+          env:
+            - name: ZOO_SERVERS
+              value: zoo1:2888:3888:participant zoo2:2888:3888:participant zoo3:2888:3888:participant zoo4:2888:3888:participant zoo5:2888:3888:participant
+            - name: ALLOW_ANONYMOUS_LOGIN
+              value: 'yes'
+            - name: ZOO_SERVERS_ID
+              value: "SET_ID"
+          ports:
+            - containerPort: 2181
+              name: client
+            - containerPort: 2888
+              name: peer
+            - containerPort: 3888
+              name: leader-election
+          volumeMounts:
+            - name: datadir
+              mountPath: /data
+      volumes:
+        - name: datadir
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zooSET_ID
+spec:
+  ports:
+    - containerPort: 2181
+      name: client
+    - containerPort: 2888
+      name: peer
+    - containerPort: 3888
+      name: leader-election
+  clusterIP: None
+  selector:
+    app: zooSET_ID
