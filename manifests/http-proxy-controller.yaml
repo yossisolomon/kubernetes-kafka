@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: http-proxy
-        image: docker.io/confluentinc/cp-kafka-rest
+        #image: confluentinc/confluentinc/cp-kafka-rest:3.2.0
+        image: docker.io/confluentinc/cp-kafka-rest:3.2.0
         ports:
         - containerPort: 8082
         env:

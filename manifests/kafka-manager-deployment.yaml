@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
       - name: kafka-manager
+        #what version of kafka manager do we have?
         image: docker.io/sheepkiller/kafka-manager
         env:
         - name: ZK_HOSTS

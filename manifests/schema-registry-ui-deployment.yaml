@@ -16,4 +16,4 @@ spec:
         image: docker.io/landoop/schema-registry-ui
         env:
         - name: SCHEMAREGISTRY_URL
-          value: http://77.138.42.10:9090/api/v1/proxy/namespaces/kafka/services/schema-registry:client
+          value: http://MASTER_IP:9090/api/v1/proxy/namespaces/kafka/services/schema-registry:client

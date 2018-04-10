@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: schema-registry
-        image: docker.io/confluentinc/cp-schema-registry:latest
+        #image: landoop/confluentinc/cp-schema-registry:3.2.0
+        image: docker.io/confluentinc/cp-schema-registry:3.2.0
         env:
         - name: SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL
           value: zookeeper:2181

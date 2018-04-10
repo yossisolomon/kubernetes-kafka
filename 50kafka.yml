@@ -20,10 +20,7 @@ spec:
         command:
         - sh
         - -c
-        - "./bin/kafka-server-start.sh config/server.properties --override broker.id=$(hostname | awk -F'-' '{print $2}') --override auto.create.topics.enable=true"
-        env:
-        - name: JMX_PORT
-          value: "2000"
+        - "./bin/kafka-server-start.sh config/server.properties --override broker.id=$(hostname | awk -F'-' '{print $2}')"
         volumeMounts:
         - name: datadir
           mountPath: /opt/kafka/data
@@ -34,4 +31,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 10Gi
+          storage: 200Gi
